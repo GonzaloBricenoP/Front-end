@@ -52,11 +52,11 @@ const Login = () => {
       fetch(config.apiURL+"login", requestOptions).then((response) => {
         switch(response.status){
           case 400:
-            showMessage(true, "La consulta esta mal forma, faltan");
+            showMessage(true, "La consulta esta mal formada, faltan parametros");
             changeButtonState(button, true);
             break;
           case 403:
-            showMessage(true, "Acceso prohibido");
+            showMessage(true, "Acceso denegado");
             changeButtonState(button, true);
             break;
           case 404:
@@ -85,15 +85,13 @@ const Login = () => {
           changeButtonState(button, false);
           localStorage.setItem("user", infoUser);
           const roles = [infoData['level']];
-          setAuth({user, password, roles})
+          /**setAuth({user, password, roles})**/
           navigate("/panel");
         } catch (error) {
           console.log(error);
         }
       })
-    }
-
-
+    };
 
     return (
         <div className="hold-transition login-page">
@@ -129,9 +127,9 @@ const Login = () => {
                             </div>
                             <hr />
                         </form>
-                        <div className="alert alert-warning d-none" role="alert" displa>
+                        <div className="alert alert-danger d-none" role="alert">
                             <strong>Se ha detectado un error!</strong><br />
-                            <small>A continuación se le presenta la razón: </small>
+                            <small>A continuación se le presenta la razón:</small>
                             <strong><p id="reason"></p></strong>
                         </div>
                     </div>
@@ -139,6 +137,6 @@ const Login = () => {
             </div>
         </div>
     )
-}
+};
 
 export default Login;
