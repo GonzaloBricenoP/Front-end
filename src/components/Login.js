@@ -84,9 +84,9 @@ const Login = () => {
           showMessage(false, "");
           changeButtonState(button, false);
           localStorage.setItem("user", infoUser);
-          const roles = [infoData['level']];
+          /**const roles = [infoData['level']];**/
           /**setAuth({user, password, roles})**/
-          navigate("/panel");
+          navigate("/Sales");
         } catch (error) {
           console.log(error);
         }
@@ -97,7 +97,7 @@ const Login = () => {
         <div className="hold-transition login-page">
             <div className="login-box">
                 <div className="login-logo">
-                    <a href="/">Gigantes del<b> Pacífico</b></a>
+                    <a href="/">Gigante del<b> Pacífico</b></a>
                 </div>
                 <div className="card">
                     <div className="card-body login-card-body">

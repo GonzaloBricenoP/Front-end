@@ -1,20 +1,50 @@
 import React from "react";
+import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
+import config from './../helpers/config.json'
 
-const Panel= () => {
-    return (
+class Sales extends React.Component{
+
+    state = {
+        clientList: [],
+        productList: []
+    }
+
+    componentDidMount() {
+        const requestOptions = {
+            method: 'GET', headers: { 'Content-Type': 'application/json'}
+        };
+        fetch(config.apiURL+"clients/"+config.operatorId, requestOptions).then((response) => {
+            return response.json();
+        }).then((result) => {
+            this.setState({ clientList: result.data.map((client) => { return client; }) });
+        });
+
+        fetch(config.apiURL+"products/"+config.operatorId, requestOptions).then((response) => {
+            return response.json();
+        }).then((result) => {
+            this.setState({ productList: result.data.map((product) => { return product; }) });
+        });
+    }
+
+    render() {
+       const {clientList, productList} = this.state;
+       return (
         <div>
-
+            <Topbar />
+            <Sidebar />
             <div className="content-wrapper">
                 <section className="content-header">
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1>Panel de Ventas</h1>
+                                <small>-     Gigante del <strong>Pacífico</strong></small>
+                                <h1><strong>Panel de ventas</strong></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="#">Panel de ventas</a></li>
-                                    <li className="breadcrumb-item active"></li>
+                                    <li className="breadcrumb-item"><a href="/#">Cloud Sales</a></li>
+                                    <li className="breadcrumb-item active">Ventas</li>
                                 </ol>
                             </div>
                         </div>
@@ -26,60 +56,75 @@ const Panel= () => {
                             <div className="row">
                                 <div className="col-10">
                                     <div className="form-group">
-                                        <label htmlFor="client" className="control-label">Clientes</label>
+                                        <label className="control-label">Cliente</label>
                                         <select name="client" id="client" className="form-control">
-                                            <option value="0">--Selecciona</option>
+                                            <option value="0">↓ Seleccione el cliente ↓</option>
+                                            {clientList.map(client => (
+                                                <option key={client.id} value={client.id}>
+                                                    {client.name}
+                                                </option>
+                                            ))}
                                         </select>
                                     </div>
                                 </div>
                                 <div className="col-2">
-                                    <label htmlFor className="control-label label-empty" />
+                                    <br />
+                                    <label  className="control-label label-empty" />
                                     <button className="btn btn-success"><i className="fas fa-chevron-right" /></button>
                                 </div>
+                            </div>
+                            <div className="row">
                                 <div className="col-12">
                                     <hr />
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
-                                        <label htmlFor="product" className="control-label">Producto</label>
+                                        <label className="control-label">Producto</label>
                                         <select name="product" id="product" className="form-control">
-                                            <option value="0">--Selecciona</option>
+                                            <option value="0">↓ Seleccione el producto a vender ↓</option>
+                                            {productList.map(product => (
+                                                <option key={product.id} value={product.id}>
+                                                    {product.name}
+                                                </option>
+                                            ))}
                                         </select>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
-                                        <label className="label-control" htmlFor="msv">U.M.V.</label>
+                                        <label className="label-control">Unidad minima de venta</label>
                                         <input className="form-control" type="text" name="msv" id="msv" readOnly="readonly" />
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
-                                        <label className="label-control" htmlFor="stock">Stock</label>
-                                        <input className="form-control" type="text" name="stock" id="stock" readOnly="readonly" />
+                                        <label className="label-control" >Stock disponible</label>
+                                        {productList.map(product => (
+                                            <input className="form-control" type="text" name="stock" id="stock" readOnly="readonly" key={product.id} value={product.stock} />
+                                            ))}
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
-                                        <label className="label-control" htmlFor="qty">Cantidad</label>
+                                        <label className="label-control" >Cantidad a vender</label>
                                         <input className="form-control" type="number" name="qty" id="qty" />
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
-                                        <label className="label-control" htmlFor="unitary">Unitario</label>
+                                        <label className="label-control">Precio unitario</label>
                                         <input className="form-control" type="number" name="unitary" id="unitary" />
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
-                                        <label className="label-control" htmlFor="discount">Descuento</label>
+                                        <label className="label-control" >Descuento</label>
                                         <input className="form-control" type="number" name="discount" id="discount" />
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
-                                        <label className="label-control" htmlFor="total">Total</label>
+                                        <label className="label-control" >Total a pagar</label>
                                         <input className="form-control" type="number" name="total" id="total" />
                                     </div>
                                 </div>
@@ -104,35 +149,45 @@ const Panel= () => {
                                     </table>
                                 </div>
                                 <div className="col-6">
-                                    <label htmlFor="neto" className="control-label">Neto</label>
+                                    <label className="control-label">Neto</label>
                                     <input className="form-control" type="text" name="neto" id="neto" readOnly="readonly" value="0" />
                                 </div>
                                 <div className="col-6">
-                                    <label htmlFor="tax" className="control-label">IVA</label>
+                                    <label className="control-label">IVA</label>
                                     <input className="form-control" type="text" name="tax" id="tax" readOnly="readonly" value="0" />
                                 </div>
                                 <div className="col-6">
-                                    <label htmlFor="otherTaxs" className="control-label">Otros Impuestos</label>
+                                    <label className="control-label">Otros Impuestos</label>
                                     <input className="form-control" type="text" name="otherTaxs" id="otherTaxs" readOnly="readonly" value="0" />
                                 </div>
                                 <div className="col-6">
-                                    <label htmlFor="final" className="control-label">Total</label>
+                                    <label className="control-label">Total</label>
                                     <input className="form-control" type="text" name="final" id="final" readOnly="readonly" value="0" />
                                 </div>
                                 <div className="col-12">
                                     <hr />
                                 </div>
                                 <div className="col-6">
-                                    <label htmlFor="type" className="control-label">Tipo de Venta</label>
+                                    <label className="control-label">Tipo de Venta</label>
                                     <select className="form-control" name="type" id="type">
-                                        <option value="0">-- --Seleccione</option>
+                                        <option value="0">↓ Seleccione el tipo de venta ↓</option>
+                                        <option value="1">Afecta</option>
+                                        <option value="2">Exenta</option>
                                     </select>
                                 </div>
                                 <div className="col-6">
-                                    <label htmlFor="document" className="control-label">Tipo de Documento</label>
+                                    <label className="control-label">Tipo de Documento</label>
                                     <select className="form-control" name="document" id="document">
-                                        <option value="0">-- --Seleccione</option>
+                                        <option value="0">↓ Seleccione el tipo de documento ↓</option>
+                                        <option value="1">Factura Electrónica</option>
+                                        <option value="2">Factura Exenta Electrónica</option>
+                                        <option value="3">Boleta</option>
+                                        <option value="">Guía de Despacho Electrónica</option>
                                     </select>
+                                    <br />
+                                </div>
+                                <div className="col-12 text-center">
+                                    <button className="btn btn-primary btn-block"><i className='fa fa-save'></i> Guardar Pedido</button>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +195,7 @@ const Panel= () => {
                 </section>
             </div>
         </div>
-    )
+       )
+    }
 }
-
-export default Panel;
+export default Sales;
