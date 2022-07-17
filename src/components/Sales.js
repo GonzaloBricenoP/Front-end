@@ -43,7 +43,7 @@ class Sales extends React.Component{
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="/#">Cloud Sales</a></li>
+                                    <li className="breadcrumb-item"><a href="/">Cloud Sales</a></li>
                                     <li className="breadcrumb-item active">Ventas</li>
                                 </ol>
                             </div>
@@ -99,9 +99,7 @@ class Sales extends React.Component{
                                 <div className="col-4">
                                     <div className="form-group">
                                         <label className="label-control" >Stock disponible</label>
-                                        {productList.map(product => (
-                                            <input className="form-control" type="text" name="stock" id="stock" readOnly="readonly" key={product.id} value={product.stock} />
-                                            ))}
+                                        <input className="form-control" type="text" name="stock" id="stock" readOnly="readonly"/>
                                     </div>
                                 </div>
                                 <div className="col-4">

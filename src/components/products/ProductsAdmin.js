@@ -46,7 +46,7 @@ const ProductsAdmin = () => {
     };
 
     const disable = (product) => {
-        if(window.confirm("¿Está seguro/a de querer deshabilitar:\n"+product.name)){
+        if(window.confirm("¿Está seguro/a de querer deshabilitar el siguiente producto: "+product.name+"?")){
             const requestOptionsPatch = {
                 method: 'PUT', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({
                     operatorId: config.operatorId,
@@ -68,7 +68,7 @@ const ProductsAdmin = () => {
         }
     }
     const enable = (product) => {
-        if(window.confirm("¿Está seguro/a de querer volver a habilitar:\n"+product.name)){
+        if(window.confirm("¿Está seguro/a de querer volver a habilitar el siguiente producto: "+product.name+"?")){
             const requestOptionsPatch = {
                 method: 'PUT', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({
                     operatorId: config.operatorId,
@@ -104,7 +104,7 @@ const ProductsAdmin = () => {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1>Panel de Ventas</h1>
+                                <h1>Menú de <strong>PRODUCTOS</strong></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
@@ -118,16 +118,16 @@ const ProductsAdmin = () => {
                     <section className="content">
                         <div className="card">
                             <div className="card-header">
-                                <Link to="/products/add" className="btn btn-primary"><i className="fas fa-plus"></i> Nuevo</Link>
+                                <Link to="/products/add" className="btn btn-success"><i className="fas fa-plus"></i> Agregar producto</Link>
                             </div>
                             <div className="card-body">
                                 <div className="row">
-                                    <table className="table">
-                                        <thead>
+                                    <table className="table table-secondary">
+                                        <thead className="thead-strip">
                                             <tr>
-                                                <th>Producto</th>
+                                                <th>Nombre del producto</th>
                                                 <th>Precio Unitario</th>
-                                                <th>Stock Actual</th>
+                                                <th>Stock Disponible</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>

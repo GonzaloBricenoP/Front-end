@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" className="brand-link">
+            <a href="/Sales" className="brand-link">
                 <img src="https://fizz.cl/fancybox-pics/corporativo/00gigante-logo.jpg" alt="Cloud Sales Logo" className="brand-image img-rounded elevation-4" style={{opacity: ''}} />
-                <span className="brand-text font-weight-light">Gigante del <strong>Pacífico</strong></span>
+                <span className="brand-text font-weight-light" >Gigante del <strong>Pacífico</strong></span>
             </a>
             <div className="sidebar">
                 <div className="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -21,27 +21,27 @@ const Sidebar = () => {
                     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li className="nav-header">Accesos</li>
                         <li className="nav-item">
-                            <Link to="/sales"  className="nav-link">
+                            <Link to="/Sales"  className="nav-link">
                                 <i className="nav-icon fas fa-cart-shopping" />
-                                <p>Ventas</p>
+                                <p>Menú de ventas</p>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/sales"  className="nav-link">
+                            <Link to="/Sales"  className="nav-link">
                                 <i className="nav-icon fas fa-user" />
-                                <p>Clientes</p>
+                                <p>Menú de clientes</p>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/products"  className="nav-link">
                                 <i className="nav-icon fas fa-box" />
-                                <p>Productos</p>
+                                <p>Menú de productos</p>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/sales"  className="nav-link">
+                            <Link to="/a"  className="nav-link">
                                 <i className="nav-icon fas fa-users" />
-                                <p>Usuarios</p>
+                                <p><strong>¿Usuarios?</strong></p>
                             </Link>
                         </li>
                     </ul>

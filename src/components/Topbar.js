@@ -7,6 +7,10 @@ const Topbar = () => {
             <li className="nav-item">
                 <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars" /></a>
             </li>            
+            <li className='nav-item'>
+                <a href="/Sales">Panel de ventas</a>
+
+            </li>
         </ul>
     </nav>);
 }
