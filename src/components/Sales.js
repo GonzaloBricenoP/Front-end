@@ -7,7 +7,25 @@ class Sales extends React.Component{
 
     state = {
         clientList: [],
-        productList: []
+        productList: [],
+        product: {
+            id: "",
+            name: "",
+            price: "",
+            MSU: 0,
+            stock: 0,
+            MDPrice: 0,
+            MDPercentge: 0,
+            active: true
+        }
+    }
+
+    selectProduct = (event) => {
+        let product = this.state.productList.find(product => product.id === event.target.value);
+        console.log(product);
+        this.setState({
+            product: product
+        });
     }
 
     componentDidMount() {
@@ -43,7 +61,7 @@ class Sales extends React.Component{
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="/">Cloud Sales</a></li>
+                                    <li className="breadcrumb-item"><a href="/">Gigante del Pacifico</a></li>
                                     <li className="breadcrumb-item active">Ventas</li>
                                 </ol>
                             </div>
@@ -80,7 +98,7 @@ class Sales extends React.Component{
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label className="control-label">Producto</label>
-                                        <select name="product" id="product" className="form-control">
+                                        <select name="product" id="product" className="form-control" onChange={this.selectProduct}>
                                             <option value="0">↓ Seleccione el producto a vender ↓</option>
                                             {productList.map(product => (
                                                 <option key={product.id} value={product.id}>
@@ -93,13 +111,13 @@ class Sales extends React.Component{
                                 <div className="col-4">
                                     <div className="form-group">
                                         <label className="label-control">Unidad minima de venta</label>
-                                        <input className="form-control" type="text" name="msv" id="msv" readOnly="readonly" />
+                                        <input className="form-control" type="text" name="msv" id="msv" readOnly="readonly" value={this.state.product.MSU} />
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="form-group">
                                         <label className="label-control" >Stock disponible</label>
-                                        <input className="form-control" type="text" name="stock" id="stock" readOnly="readonly"/>
+                                        <input className="form-control" type="text" name="stock" id="stock" readOnly="readonly" value={this.state.product.stock}/>
                                     </div>
                                 </div>
                                 <div className="col-4">
@@ -111,7 +129,7 @@ class Sales extends React.Component{
                                 <div className="col-4">
                                     <div className="form-group">
                                         <label className="label-control">Precio unitario</label>
-                                        <input className="form-control" type="number" name="unitary" id="unitary" />
+                                        <input className="form-control" type="number" name="unitary" readOnly="readonly" id="unitary" value={this.state.product.price}/>
                                     </div>
                                 </div>
                                 <div className="col-4">

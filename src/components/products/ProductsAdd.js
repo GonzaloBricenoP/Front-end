@@ -37,10 +37,10 @@ const ProductsAdd = () => {
               fetch(config.apiURL+"products", requestOptions).then((response) => {
                 switch(response.status){
                   case 400:
-                    console.log("consulta mal formada");
+                    console.log("Consulta mal formada / faltan parametros.");
                     break;
                   case 403:
-                    console.log("acceso prohibido");
+                    console.log("Acceso denegado");
                     break;
                   default:
                     //
@@ -115,8 +115,8 @@ const ProductsAdd = () => {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between">
-                                <button type="button" onClick={cancel} className="btn btn-secondary"><i className="fas fa-times"></i> Cancelar</button>
-                                <button type="submit" className="btn btn-primary"><i className="fas fa-save"></i> Guardar producto</button>
+                                <button type="button" onClick={cancel} className="btn btn-danger"><i className="fas fa-times"></i> Cancelar</button>
+                                <button type="submit" className="btn btn-success"><i className="fas fa-save"></i> Guardar producto</button>
                             </div>
                             </form>
                         </div>

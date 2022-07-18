@@ -108,7 +108,7 @@ const ProductsAdmin = () => {
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="/">Cloud Sales</a></li>
+                                    <li className="breadcrumb-item"><a href="/">Gigante del Pacifico</a></li>
                                     <li className="breadcrumb-item active">Productos</li>
                                 </ol>
                             </div>

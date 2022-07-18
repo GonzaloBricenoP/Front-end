@@ -12,7 +12,7 @@ const ProductsEdit = () => {
         var hasChanges = productName.value.length > 0 ||  MSU.value.length > 0 || price.value.length > 0 || stock.value.length > 0 ||
             MDPrice.value.length > 0 || MDPercentage.value.length > 0;
         if(hasChanges){
-            if(window.confirm("Existen cambios sin guardar. ¿Seguro de querer cancelar?")){
+            if(window.confirm("Existen cambios sin guardar. ¿Está seguro/a de querer cancelar?")){
                 navigate("/products");
             }
         } else {
@@ -48,7 +48,7 @@ const ProductsEdit = () => {
                 }
                 return response.json();
               }).then((result) => {
-                  window.alert("Actualizacion existosa");
+                  window.alert("Actualización existosa");
                   navigate("/products");
               })
         }
@@ -65,7 +65,7 @@ const ProductsEdit = () => {
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="/">Cloud Sales</a></li>
+                                    <li className="breadcrumb-item"><a href="/">Gigante del Pacifico</a></li>
                                     <li className="breadcrumb-item"><a href="/products">Productos</a></li>
                                     <li className="breadcrumb-item active">Agregar</li>
                                 </ol>
